@@ -55,7 +55,7 @@ agreeButton.click()
 a=1
 #for 81 cities of Turkey
 for a in range(1,82):
-    #at each return the down key should be applied as many as the corresponding city in the order
+    #at each return the down key should be applied as many times as the city in the order has been highlighted
     for a in (0,a):
         dropdownCity.send_keys(Keys.DOWN)
         time.sleep(2)

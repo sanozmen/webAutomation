@@ -21,7 +21,7 @@ time.sleep(2)
 dropdownElectionName= driver.find_element_by_xpath('//*[@id="collapsePanelThree"]/div[1]/div/div/form/div[1]/div/div/ng-select/div/div/div[2]/input')
 dropdownElectionName.click()
 #as each single element in dropdownlist has randomly created id's, I have to follow more manual,visual way.
-#after clicking expanding the dropdown, down arrow 5 times and then enter to proceed
+#after clicking expanding the dropdown, down arrow 5 times and then push  enter to proceed
 i=1
 for i in range(1,6):
     dropdownElectionName.send_keys(Keys.DOWN)

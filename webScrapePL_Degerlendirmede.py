@@ -1,5 +1,5 @@
 #a script to get information about all license,prelicense owners of energy facilities
-#the script is not fully automated. It requires manual confirmation of google recaptcha in an estimated time of 3 min.
+#the script is not fully automated. It requires manual confirmation of google recaptcha in an estimated max. duration of 3 min.
 #then the script does the rest to get info and write it to a txt file. 
 
 import time

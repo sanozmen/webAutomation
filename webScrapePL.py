@@ -10,7 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 
 #initiate the .txt file on which the data will be written
-f = open('all_PL_yururlukte.txt', 'w+')
+f = open('all_PL_190916.txt', 'w+')
 
 #define the path to the driver either gecko or chrome and then run it
 driver = webdriver.Chrome(executable_path='/drivers/chromedriver.exe')
@@ -53,7 +53,7 @@ while not selectFifty:
         break
 
 #explicit wait for process to be completed
-wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
 
 #get the total number of rows
 row_count = len(driver.find_elements_by_xpath('//*[@id="elektrikUretimOzetSorguSonucu:list_data"]/tr'))
@@ -79,17 +79,17 @@ for mainPage in range(2, 7):
             try:
                 buttonPopup = driver.find_element_by_xpath('//*[@id="elektrikUretimOzetSorguSonucu:list:' + str(row) + ':j_idt140"]/span[1]')
                 buttonPopup.click()
-                wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+                wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
                 popup_rowCount = len(driver.find_elements_by_xpath('//*[@id="elektrikKoordinatViewDataTable_data"]/tr'))
 
             except NoSuchElementException:
                 otherButtonPopup=driver.find_element_by_xpath('//*[@id="elektrikUretimOzetSorguSonucu:list:' + str(row) + ':j_idt152"]/span[1]')
                 otherButtonPopup.click()
-                wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+                wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
                 popup_rowCount = len(driver.find_elements_by_xpath('//*[@id="elektrikKoordinatViewDataTable_data"]/tr'))
 
                 break
-
+        #when first clicked
         if popup_rowCount < 10:
 
             for eachRow in range(0, popup_rowCount):
@@ -113,12 +113,12 @@ for mainPage in range(2, 7):
             #click to see all the 50 records
             driver.find_element_by_xpath('//*[@id="elektrikKoordinatViewDataTable_rppDD"]/option[5]').click()
             #then re-define the number of rowCount appeared in the popup window
-            wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+            wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
             popup_rowCount = len(driver.find_elements_by_xpath('//*[@id="elektrikKoordinatViewDataTable_data"]/tr'))
 
             #get all data if the results shown are less then 50
             print(popup_rowCount)
-            if popup_rowCount<49:
+            if popup_rowCount<=49:
 
                 print ('Number of rows:', popup_rowCount)
                 for eachRow in range(0, popup_rowCount):
@@ -145,7 +145,7 @@ for mainPage in range(2, 7):
                 print ('Number of rows:', popup_rowCount)
                 #close and reopen it
                 driver.find_element_by_xpath('//*[@id="elektrikKoordinatViewDialog"]/div[1]/a[1]/span').click()
-                wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+                wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
                 #this part is for reopening
                 button2Popup = None
                 while not button2Popup:
@@ -153,7 +153,7 @@ for mainPage in range(2, 7):
                         button2Popup = driver.find_element_by_xpath(
                             '//*[@id="elektrikUretimOzetSorguSonucu:list:' + str(row) + ':j_idt140"]/span[1]')
                         button2Popup.click()
-                        wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+                        wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
                         popup_rowCount = len(
                             driver.find_elements_by_xpath('//*[@id="elektrikKoordinatViewDataTable_data"]/tr'))
                         print(popup_rowCount)
@@ -163,7 +163,7 @@ for mainPage in range(2, 7):
                     except NoSuchElementException:
                         driver.find_element_by_xpath(
                             '//*[@id="elektrikUretimOzetSorguSonucu:list:' + str(row) + ':j_idt152"]/span[1]').click()
-                        wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+                        wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
                         popup_rowCount = len(
                             driver.find_elements_by_xpath('//*[@id="elektrikKoordinatViewDataTable_data"]/tr'))
                         print(popup_rowCount)
@@ -193,7 +193,7 @@ for mainPage in range(2, 7):
                         for try2Page in range(2, 30):
                             nexttoPage = driver.find_element_by_xpath('//*[@id="elektrikKoordinatViewDataTable_paginator_bottom"]/span[4]/span['+str(try2Page)+']')
                             nexttoPage.click()
-                            wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+                            wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
                             popup_rowCount = len(driver.find_elements_by_xpath('//*[@id="elektrikKoordinatViewDataTable_data"]/tr'))
                             print('n')
                             for eachRow in range(0, popup_rowCount):
@@ -217,8 +217,8 @@ for mainPage in range(2, 7):
                         break
 
         #once clicked down for expanding the results for the first popup, all following will be shown as already expanded, that's why
-        #this will be the loop that is going to be mostly used if the numver of coordinates are less than 50
-        elif popup_rowCount > 10 and popup_rowCount != 50:
+        #this will be the loop that is going to be mostly used if the number of coordinates are less than 50
+        elif popup_rowCount > 10 and popup_rowCount <50:
 
             print ('Row Count is:', popup_rowCount)
             for eachRow in range(0,popup_rowCount):
@@ -258,7 +258,7 @@ for mainPage in range(2, 7):
                     for tryPage in range(2, 100):
                         nextPage = driver.find_element_by_xpath('//*[@id="elektrikKoordinatViewDataTable_paginator_bottom"]/span[4]/span['+str(tryPage)+']')
                         nextPage.click()
-                        wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+                        wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
                         popup_rowCount = len(driver.find_elements_by_xpath('//*[@id="elektrikKoordinatViewDataTable_data"]/tr'))
                         for eachRow in range(0, popup_rowCount):
                             for column in range(2, 19):
@@ -288,7 +288,7 @@ for mainPage in range(2, 7):
 
     followingPages = driver.find_element_by_xpath('//*[@id="elektrikUretimOzetSorguSonucu:list_paginator_bottom"] / span[4]/ span['+str(mainPage)+']')
     followingPages.click()
-    wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt192"]')));
+    wait.until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="j_idt189"]')));
 
     row = row_count
     row_count = row_count+50

@@ -8,7 +8,7 @@ from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
 #initiate the .txt file on which the data will be written
-f = open('LicenseUygun.txt', 'w+')
+f = open('License190916.txt', 'w+')
 
 #define the path to the driver either gecko or chrome and then run it
 driver = webdriver.Chrome(executable_path='/drivers/chromedriver.exe')
@@ -17,7 +17,7 @@ driver.get('http://lisans.epdk.org.tr/epvys-web/faces/pages/lisans/elektrikUreti
 wait = WebDriverWait(driver, 60)
 
 #select evaluation status for the project
-uygunPath= '//*[@id="elektrikUretimOzetForm:lisansDurumu_INPUT"]/option[3]'
+uygunPath= '//*[@id="elektrikUretimOzetForm:lisansDurumu_INPUT"]/option[4]'
 selectUygun=driver.find_element_by_xpath(uygunPath)
 selectUygun.click()
 
@@ -117,7 +117,7 @@ for mainPage in range(2, 7):
 
             #get all data if the results shown are less then 50
             print(popup_rowCount)
-            if popup_rowCount<49:
+            if popup_rowCount<=49:
 
                 print ('Number of rows:', popup_rowCount)
                 for eachRow in range(0, popup_rowCount):
@@ -217,7 +217,7 @@ for mainPage in range(2, 7):
 
         #once clicked down for expanding the results for the first popup, all following will be shown as already expanded, that's why
         #this will be the loop that is going to be mostly used if the numver of coordinates are less than 50
-        elif popup_rowCount > 10 and popup_rowCount != 50:
+        elif popup_rowCount > 10 and popup_rowCount <50:
 
             print ('Row Count is:', popup_rowCount)
             for eachRow in range(0,popup_rowCount):
